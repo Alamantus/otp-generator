@@ -19,22 +19,24 @@ const stripString = (string) => {
 }
 
 export const encrypt = (string, pad = null) => {
-  const strippedString = stripString(string);
-  pad = pad ? pad : generatePad(strippedString.length);
+  const strippedString = stripString(string).toUpperCase();
+  pad = pad ? pad : generatePad(strippedString.length * 2);
   return {
     oneTimePad: pad,
-    encryptedMessage: strippedString.toUpperCase().split('').map((letter, index) => {
-      const letterValue = CHARS.indexOf(letter);
-      const padValue = CHARS.indexOf(pad[index]);
+    encryptedMessage: pad.map((letter, index) => {
+      const messageLetter = strippedString.charAt(index);
+      const letterValue = messageLetter !== '' ? CHARS.indexOf(messageLetter) : CHARS.length - 1;
+      const padValue = CHARS.indexOf(letter);
       return CHARS[(letterValue + padValue) % CHARS.length];
     }).join(''),
   };
 }
 
 export const decrypt = (string, pad) => {
-  return string.split('').map((letter, index) => {
-    const letterValue = CHARS.indexOf(letter);
-    const padValue = CHARS.indexOf(pad[index]);
+  string = string.toUpperCase();
+  return pad.map((letter, index) => {
+    const letterValue = CHARS.indexOf(string.charAt(index));
+    const padValue = CHARS.indexOf(letter);
     let charIndex = (letterValue - padValue);
     while (charIndex < 0) {charIndex += CHARS.length}
     return CHARS[charIndex % CHARS.length];
