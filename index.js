@@ -14,8 +14,12 @@ const generatePad = (length) => {
   return pad;
 }
 
+const stripString = (string) => {
+  return string.replace(/[\s]+/g, '&').replace(/[^a-zA-Z0-9\&]/g, '$');
+}
+
 export const encrypt = (string, pad = null) => {
-  const strippedString = string.replace(/[\s]+/g, '&').replace(/[^a-zA-Z0-9\&]/g, '$');
+  const strippedString = stripString(string);
   pad = pad ? pad : generatePad(strippedString.length);
   return {
     oneTimePad: pad,
@@ -38,12 +42,19 @@ export const decrypt = (string, pad) => {
 }
 
 document.getElementById('encryptInput').onclick = () => {
+  const error = document.getElementById('inputError');
   const input = document.getElementById('input').value;
-  const inputPad = document.getElementById('inputPad').value;
-  const pad = inputPad !== '' && inputPad.length >= input.length ? inputPad.split('') : null;
-  const encryption = encrypt(input, pad);
-  document.getElementById('inputPad').value = encryption.oneTimePad.join('');
-  document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
+  const inputPad = stripString(document.getElementById('inputPad').value).toUpperCase();
+  const pad = inputPad !== '' ? inputPad.split('') : null;
+  if (pad !== null && pad.length < input.length) {
+    document.getElementById('inputPad').value = pad.join('');
+    error.innerHTML = 'The pad must be at least as long as the input';
+  } else {
+    error.innerHTML = '';
+    const encryption = encrypt(input, pad);
+    document.getElementById('inputPad').value = encryption.oneTimePad.join('');
+    document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
+  }
 }
 
 document.getElementById('decryptInput').onclick = () => {
