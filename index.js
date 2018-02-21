@@ -4,7 +4,7 @@ const CHARS = [
   'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
-function generatePad(string) {
+const generatePad = (string) => {
   const pad = [];
   for (let i = 0; i < string.length; i++) {
     const letter = Math.floor(Math.random() * CHARS.length);
@@ -13,9 +13,8 @@ function generatePad(string) {
   return pad;
 }
 
-function encrypt(string) {
+export const encrypt = (string) => {
   const strippedString = string.replace(/[^a-zA-Z0-9]/g, '');
-  console.log('strippedString', strippedString);
   const pad = generatePad(strippedString);
   return {
     oneTimePad: pad,
@@ -27,7 +26,7 @@ function encrypt(string) {
   };
 }
 
-function decrypt(string, pad) {
+export const decrypt = (string, pad) => {
   return string.split('').map((letter, index) => {
     const letterValue = CHARS.indexOf(letter);
     const padValue = CHARS.indexOf(pad[index]);
