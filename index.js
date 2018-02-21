@@ -5,18 +5,18 @@ const CHARS = [
   '&', '$',
 ];
 
-const generatePad = (string) => {
+const generatePad = (length) => {
   const pad = [];
-  for (let i = 0; i < string.length; i++) {
+  for (let i = 0; i < length; i++) {
     const letter = Math.floor(Math.random() * CHARS.length);
     pad.push(CHARS[letter]);
   }
   return pad;
 }
 
-export const encrypt = (string) => {
+export const encrypt = (string, pad = null) => {
   const strippedString = string.replace(/[\s]+/g, '&').replace(/[^a-zA-Z0-9\&]/g, '$');
-  const pad = generatePad(strippedString);
+  pad = pad ? pad : generatePad(strippedString.length);
   return {
     oneTimePad: pad,
     encryptedMessage: strippedString.toUpperCase().split('').map((letter, index) => {
@@ -39,8 +39,10 @@ export const decrypt = (string, pad) => {
 
 document.getElementById('encryptInput').onclick = () => {
   const input = document.getElementById('input').value;
-  const encryption = encrypt(input);
-  document.getElementById('pad').innerHTML = encryption.oneTimePad.join('');
+  const inputPad = document.getElementById('inputPad').value;
+  const pad = inputPad !== '' && inputPad.length >= input.length ? inputPad.split('') : null;
+  const encryption = encrypt(input, pad);
+  document.getElementById('inputPad').value = encryption.oneTimePad.join('');
   document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
 }
 
