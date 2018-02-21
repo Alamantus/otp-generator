@@ -20,7 +20,40 @@
   <div class="section">
     <div class="container">
       <div class="columns">
-        <div class="column">
+        <div class="column is-one-third">
+          <h2 class="title">
+            Generate a One-Time Pad
+          </h2>
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="number" id="padLength" placeholder="Length">
+            </div>
+            <div class="control">
+              <a class="button" id="generatePad">
+                <span>
+                  Generate Pad
+                </span>
+                <span class="icon">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <label class="label">One-Time Pad</label>
+              <div class="box">
+                <pre id="generatedPad"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <h2 class="title">
+            Encrypt a Message
+          </h2>
           <div class="field">
             <label class="label">
               Your Message
@@ -55,13 +88,16 @@
             <div class="column">
               <label class="label">Encrypted Message</label>
               <div class="box">
-                <pre id="encrypted"></pre>
+                <pre id="encrypted" style="width:100%;line-break"></pre>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="column">
+        <div class="column is-one-third">
+          <h2 class="title">
+            Encrypt a Message
+          </h2>
           <div class="field">
             <label class="label">
                Their Message
@@ -96,7 +132,7 @@
             <div class="column">
               <label class="label">Decrypted Message</label>
               <div class="box">
-                <pre id="decrypted"></pre>
+                <pre id="decrypted" style="width:100%;line-break"></pre>
               </div>
             </div>
           </div>

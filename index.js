@@ -5,7 +5,7 @@ const CHARS = [
   '&', '$',
 ];
 
-const generatePad = (length) => {
+export const generatePad = (length) => {
   const pad = [];
   for (let i = 0; i < length; i++) {
     const letter = Math.floor(Math.random() * CHARS.length);
@@ -41,25 +41,33 @@ export const decrypt = (string, pad) => {
   }).join('').replace(/\&/g, ' ').replace(/\$/g, '-');
 }
 
-document.getElementById('encryptInput').onclick = () => {
-  const error = document.getElementById('inputError');
-  const input = document.getElementById('input').value;
-  const inputPad = stripString(document.getElementById('inputPad').value).toUpperCase();
-  const pad = inputPad !== '' ? inputPad.split('') : null;
-  if (pad !== null && pad.length < input.length) {
-    document.getElementById('inputPad').value = pad.join('');
-    error.innerHTML = 'The pad must be at least as long as the input';
-  } else {
-    error.innerHTML = '';
-    const encryption = encrypt(input, pad);
-    document.getElementById('inputPad').value = encryption.oneTimePad.join('');
-    document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
+window.onload = () => {
+  document.getElementById('encryptInput').onclick = () => {
+    const error = document.getElementById('inputError');
+    const input = document.getElementById('input').value;
+    const inputPad = stripString(document.getElementById('inputPad').value).toUpperCase();
+    const pad = inputPad !== '' ? inputPad.split('') : null;
+    if (pad !== null && pad.length < input.length) {
+      document.getElementById('inputPad').value = pad.join('');
+      error.innerHTML = 'The pad must be at least as long as the input';
+    } else {
+      error.innerHTML = '';
+      const encryption = encrypt(input, pad);
+      document.getElementById('inputPad').value = encryption.oneTimePad.join('');
+      document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
+    }
   }
-}
 
-document.getElementById('decryptInput').onclick = () => {
-  const input = document.getElementById('encryptedInput').value;
-  const pad = document.getElementById('encryptedInputPad').value.split('');
-  const output = decrypt(input, pad);
-  document.getElementById('decrypted').innerHTML = output;
+  document.getElementById('decryptInput').onclick = () => {
+    const input = document.getElementById('encryptedInput').value;
+    const pad = document.getElementById('encryptedInputPad').value.split('');
+    const output = decrypt(input, pad);
+    document.getElementById('decrypted').innerHTML = output;
+  }
+
+  document.getElementById('generatePad').onclick = () => {
+    const input = parseInt(document.getElementById('padLength').value, 10);
+    const output = generatePad(input);
+    document.getElementById('generatedPad').innerHTML = output.join('');
+  }
 }
