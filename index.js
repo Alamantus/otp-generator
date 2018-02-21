@@ -8,13 +8,14 @@ function generatePad(string) {
   const pad = [];
   for (let i = 0; i < string.length; i++) {
     const letter = Math.floor(Math.random() * CHARS.length);
-    pad.push(letter);
+    pad.push(CHARS[letter]);
   }
   return pad;
 }
 
 function encrypt(string) {
-  const strippedString = string.replace(/[^A-Z0-9]/g, '');
+  const strippedString = string.replace(/[^a-zA-Z0-9]/g, '');
+  console.log('strippedString', strippedString);
   const pad = generatePad(strippedString);
   return {
     oneTimePad: pad,
@@ -32,4 +33,18 @@ function decrypt(string, pad) {
     const padValue = CHARS.indexOf(pad[index]);
     return CHARS[(letterValue - padValue) % CHARS.length];
   }).join('');
+}
+
+document.getElementById('encryptInput').onclick = () => {
+  const input = document.getElementById('input').value;
+  const encryption = encrypt(input);
+  document.getElementById('pad').innerHTML = encryption.oneTimePad.join('');
+  document.getElementById('encrypted').innerHTML = encryption.encryptedMessage;
+}
+
+document.getElementById('decryptInput').onclick = () => {
+  const input = document.getElementById('encryptedInput').value;
+  const pad = document.getElementById('encryptedInputPad').value.split('');
+  const output = decrypt(input, pad);
+  document.getElementById('decrypted').innerHTML = output;
 }

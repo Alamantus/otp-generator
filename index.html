@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>One-Time Pad Generator</title>
+  <meta name="description" content="One-Time Pad Generator">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <strong>Your Message</strong><br>
+  <textarea id="input"></textarea><br>
+  <button id="encryptInput">Encrypt</button><br>
+  <br>
+  <strong>One-Time Pad</strong><br>
+  <pre id="pad"></pre><br>
+  <strong>Encrypted Message</strong><br>
+  <pre id="encrypted"></pre><br>
+  <br>
+  <hr>
+  <br>
+  <strong>Their Message</strong><br>
+  <textarea id="encryptedInput"></textarea><br>
+  <strong>One-Time Pad</strong><br>
+  <textarea id="encryptedInputPad"></textarea><br>
+  <button id="decryptInput">Decrypt</button><br>
+  <br>
+  <strong>Decrypted Message</strong><br>
+  <pre id="decrypted"></pre><br>
+  
+  <script src="./index.js"></script>
+</body>
+
+</html>

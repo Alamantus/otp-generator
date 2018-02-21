@@ -4,6 +4,10 @@
   "description": "Make secure communication easy and fun!",
   "author": "Robbie Antenesse <dev@alamantus.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "parcel ./index.html",
+    "build": "parcel build ./index.html"
+  },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "parcel-bundler": "^1.6.2"
