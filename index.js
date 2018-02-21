@@ -31,7 +31,9 @@ function decrypt(string, pad) {
   return string.split('').map((letter, index) => {
     const letterValue = CHARS.indexOf(letter);
     const padValue = CHARS.indexOf(pad[index]);
-    return CHARS[(letterValue - padValue) % CHARS.length];
+    let charIndex = (letterValue - padValue);
+    while (charIndex < 0) {charIndex += CHARS.length}
+    return CHARS[charIndex % CHARS.length];
   }).join('');
 }
 
