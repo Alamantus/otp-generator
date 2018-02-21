@@ -81,4 +81,9 @@ window.onload = () => {
     const output = generatePad(length);
     document.getElementById('inputPad').value = output.join('');
   }
+
+  document.getElementById('clearPad').onclick = () => {
+    document.getElementById('padLength').value = '';
+    document.getElementById('inputPad').value = '';
+  }
 }
