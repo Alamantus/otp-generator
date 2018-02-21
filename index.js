@@ -1,7 +1,7 @@
 const CHARS = [
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
   'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-  'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+  'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '$'
 ];
 
 const generatePad = (string) => {
@@ -14,7 +14,7 @@ const generatePad = (string) => {
 }
 
 export const encrypt = (string) => {
-  const strippedString = string.replace(/[^a-zA-Z0-9]/g, '');
+  const strippedString = string.replace(/[\s]+/g, '$').replace(/[^a-zA-Z0-9\$]/g, '');
   const pad = generatePad(strippedString);
   return {
     oneTimePad: pad,
@@ -33,7 +33,7 @@ export const decrypt = (string, pad) => {
     let charIndex = (letterValue - padValue);
     while (charIndex < 0) {charIndex += CHARS.length}
     return CHARS[charIndex % CHARS.length];
-  }).join('');
+  }).join('').replace(/\$/g, ' ');
 }
 
 document.getElementById('encryptInput').onclick = () => {
