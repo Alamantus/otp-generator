@@ -65,6 +65,11 @@ window.onload = () => {
     document.getElementById('decrypted').innerHTML = output;
   }
 
+  document.getElementById('padLength').oninput = (event) => {
+    const value = parseInt(event.target.value);
+    if (value < 1) event.target.value = 1;
+  }
+
   document.getElementById('generatePad').onclick = () => {
     const input = parseInt(document.getElementById('padLength').value, 10);
     const output = generatePad(input);
