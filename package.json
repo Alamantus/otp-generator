@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html --out-dir docs --public-url ./ --no-minify"
+    "build": "parcel build ./index.html --out-dir docs --public-url ./"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
