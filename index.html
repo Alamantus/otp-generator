@@ -8,32 +8,102 @@
   <title>One-Time Pad Generator</title>
   <meta name="description" content="One-Time Pad Generator">
 
+  <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
+
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
 
 <body>
-  <strong>Your Message</strong><br>
-  <textarea id="input"></textarea><br>
-  <strong>One-Time Pad</strong><br>
-  <textarea id="inputPad"></textarea><br>
-  <em id="inputError" style="color:red"></em>
-  <button id="encryptInput">Encrypt</button><br>
-  <br>
-  <strong>Encrypted Message</strong><br>
-  <pre id="encrypted"></pre><br>
-  <br>
-  <hr>
-  <br>
-  <strong>Their Message</strong><br>
-  <textarea id="encryptedInput"></textarea><br>
-  <strong>One-Time Pad</strong><br>
-  <textarea id="encryptedInputPad"></textarea><br>
-  <button id="decryptInput">Decrypt</button><br>
-  <br>
-  <strong>Decrypted Message</strong><br>
-  <pre id="decrypted"></pre><br>
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">
+              Your Message
+              <div class="control">
+                <textarea id="input" class="textarea"></textarea>
+              </div>
+            </label>
+          </div>
+          <div class="field">
+            <label class="label">
+              One-Time Pad
+              <div class="control">
+                <textarea id="inputPad" class="textarea"></textarea>
+              </div>
+              <div class="help is-error" id="inputError"></div>
+            </label>
+          </div>
+          <div class="field">
+            <div class="control">
+              <a class="button" id="encryptInput">
+                <span>
+                  Encrypt
+                </span>
+                <span class="icon">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <label class="label">Encrypted Message</label>
+              <div class="box">
+                <pre id="encrypted"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">
+               Their Message
+              <div class="control">
+                <textarea id="encryptedInput" class="textarea"></textarea>
+              </div>
+            </label>
+          </div>
+          <div class="field">
+            <label class="label">
+              One-Time Pad
+              <div class="control">
+                <textarea id="encryptedInputPad" class="textarea"></textarea>
+              </div>
+              <div class="help is-error" id="inputError"></div>
+            </label>
+          </div>
+          <div class="field">
+            <div class="control">
+              <a class="button" id="decryptInput">
+                <span>
+                  Decrypt
+                </span>
+                <span class="icon">
+                  <i class="fa fa-unlock"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <label class="label">Decrypted Message</label>
+              <div class="box">
+                <pre id="decrypted"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <script src="./index.js"></script>
 </body>
