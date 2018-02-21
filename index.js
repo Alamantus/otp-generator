@@ -20,7 +20,7 @@ const stripString = (string) => {
 
 export const encrypt = (string, pad = null) => {
   const strippedString = stripString(string).toUpperCase();
-  pad = pad ? pad : generatePad(strippedString.length * 2);
+  pad = pad ? pad : generatePad(strippedString.length);
   return {
     oneTimePad: pad,
     encryptedMessage: pad.map((letter, index) => {
@@ -73,8 +73,12 @@ window.onload = () => {
   }
 
   document.getElementById('generatePad').onclick = () => {
-    const input = parseInt(document.getElementById('padLength').value, 10);
-    const output = generatePad(input);
-    document.getElementById('generatedPad').innerHTML = output.join('');
+    const field = document.getElementById('padLength');
+    if (field.value === '') {
+      field.value = '10';
+    }
+    const length = parseInt(field.value, 10);
+    const output = generatePad(length);
+    document.getElementById('inputPad').value = output.join('');
   }
 }
