@@ -6,14 +6,17 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html --out-dir docs --public-url ./"
+    "build": "rimraf docs && parcel build ./index.html --out-dir docs --public-url ./"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
-    "parcel-bundler": "^1.6.2"
+    "parcel-bundler": "^1.6.2",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "bulma": "^0.6.2",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "whatwg-fetch": "^2.0.3"
   }
 }
